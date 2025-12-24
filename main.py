@@ -23,6 +23,19 @@ def most_expensive_day(list_of_date):
     return maximum_date, maximum_amount
 
 
+def average_consumption_per_day(list_of_date):
+    number_dates = 0
+    sum_all_expenses = 0
+
+    for date in list_of_date:
+        current_amount = list_of_date[date]
+
+        number_dates += 1
+        sum_all_expenses += current_amount
+
+    return sum_all_expenses / number_dates
+
+
 expenditure_data = [
     {'date': '12.03.2025', 'category': 'milk', 'amount': 130},
     {'date': '02.03.2025', 'category': 'fruits', 'amount': 340},
@@ -40,17 +53,8 @@ expenditure_data = [
 
 total_amount_by_dates = expenses_by_date(expenditure_data)
 maximum_date, maximum_amount = most_expensive_day(total_amount_by_dates)
-number_dates = 0
-sum_all_expenses = 0
-
-
-for date in total_amount_by_dates:
-    current_amount = total_amount_by_dates[date]
-
-    number_dates += 1
-    sum_all_expenses += current_amount
-
+average = average_consumption_per_day(total_amount_by_dates)
 
 print(total_amount_by_dates)
 print(f'{maximum_date}: {maximum_amount}')
-print(sum_all_expenses / number_dates)
+print(average)
