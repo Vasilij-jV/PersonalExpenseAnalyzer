@@ -10,6 +10,19 @@ def expenses_by_date(list_of_expenses):
     return dates
 
 
+def most_expensive_day(list_of_date):
+    maximum_amount = 0
+    maximum_date = None
+
+    for one_date in list_of_date:
+        current_amount_by_date = list_of_date[one_date]
+        if current_amount_by_date > maximum_amount:
+            maximum_amount = current_amount_by_date
+            maximum_date = one_date
+
+    return maximum_date, maximum_amount
+
+
 expenditure_data = [
     {'date': '12.03.2025', 'category': 'milk', 'amount': 130},
     {'date': '02.03.2025', 'category': 'fruits', 'amount': 340},
@@ -26,17 +39,13 @@ expenditure_data = [
 ]
 
 total_amount_by_dates = expenses_by_date(expenditure_data)
-maximum_amount = 0
-maximum_date = ''
+maximum_date, maximum_amount = most_expensive_day(total_amount_by_dates)
 number_dates = 0
 sum_all_expenses = 0
 
 
 for date in total_amount_by_dates:
     current_amount = total_amount_by_dates[date]
-    if current_amount > maximum_amount:
-        maximum_amount = current_amount
-        maximum_date = date
 
     number_dates += 1
     sum_all_expenses += current_amount
