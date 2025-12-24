@@ -1,3 +1,15 @@
+def expenses_by_date(list_of_expenses):
+    dates = {}
+
+    for expense in list_of_expenses:
+        if expense['date'] not in dates:
+            dates[expense['date']] = expense['amount']
+        else:
+            dates[expense['date']] += expense['amount']
+
+    return dates
+
+
 expenditure_data = [
     {'date': '12.03.2025', 'category': 'milk', 'amount': 130},
     {'date': '02.03.2025', 'category': 'fruits', 'amount': 340},
@@ -13,17 +25,12 @@ expenditure_data = [
     {'date': '10.10.2025', 'category': 'meat', 'amount': 1000},
 ]
 
-total_amount_by_dates = {}
+total_amount_by_dates = expenses_by_date(expenditure_data)
 maximum_amount = 0
 maximum_date = ''
 number_dates = 0
 sum_all_expenses = 0
 
-for expense in expenditure_data:
-    if expense['date'] not in total_amount_by_dates:
-        total_amount_by_dates[expense['date']] = expense['amount']
-    else:
-        total_amount_by_dates[expense['date']] += expense['amount']
 
 for date in total_amount_by_dates:
     current_amount = total_amount_by_dates[date]
@@ -33,6 +40,7 @@ for date in total_amount_by_dates:
 
     number_dates += 1
     sum_all_expenses += current_amount
+
 
 print(total_amount_by_dates)
 print(f'{maximum_date}: {maximum_amount}')
